@@ -1,4 +1,5 @@
 import Character from '../Character';
+import Bowerman from '../Bowerman';
 
 test.each([0, 1, -1])(
   'should return an error on a number instead of a name',
@@ -40,4 +41,19 @@ test('should return an error if health is equal to 0', () => {
   bowerman.health = 0;
 
   expect(() => bowerman.levelUp()).toThrow(new Error('Персонаж уже мертв'));
+});
+
+test('should return damage health', () => {
+  const bowerman = new Bowerman('John');
+  bowerman.damage(40);
+
+  expect(bowerman.health).toBe(70);
+});
+
+test('should return to health without changes', () => {
+  const bowerman = new Bowerman('John');
+  bowerman.health = -1;
+  bowerman.damage(40);
+
+  expect(bowerman.health).toEqual(-1);
 });
