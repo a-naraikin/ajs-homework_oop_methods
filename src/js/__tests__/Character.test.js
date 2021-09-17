@@ -20,3 +20,24 @@ test('should return the name', () => {
   const character = new Character('John');
   expect(character.name).toBe('John');
 });
+
+test('should return level up', () => {
+  const bowerman = new Bowerman('John');
+  bowerman.levelUp();
+
+  expect(bowerman).toEqual({
+    attack: 30,
+    defence: 30,
+    health: 100,
+    level: 2,
+    name: 'John',
+    type: 'Bowman',
+  });
+});
+
+test('should return an error if health is equal to 0', () => {
+  const bowerman = new Bowerman('John');
+  bowerman.health = 0;
+
+  expect(() => bowerman.levelUp()).toThrow(new Error('Персонаж уже мертв'));
+});

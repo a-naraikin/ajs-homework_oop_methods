@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-operators */
 export default class Character {
   constructor(name) {
     if (typeof name !== 'string') {
@@ -11,5 +12,16 @@ export default class Character {
     this.name = name;
     this.health = 100;
     this.level = 1;
+  }
+
+  levelUp() {
+    if (!this.health) {
+      throw new Error('Персонаж уже мертв');
+    }
+
+    this.level += 1;
+    this.attack += this.attack / 100 * 20;
+    this.defence += this.defence / 100 * 20;
+    this.health = 100;
   }
 }
